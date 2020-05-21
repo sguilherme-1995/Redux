@@ -1,19 +1,26 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native';
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import Box from './src/componente/Box'
+import turnOnOrOf from './src/reducers/turnOnOrOff'
 
-export default function App() {
+const store = createStore(turnOnOrOf)
+
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
+    <Provider store={store}>
+      <SafeAreaView style={styles.box}>
+        <Box color="orange" />
+        <Box color="blue" />
+      </SafeAreaView>
+    </Provider>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const styles = {
+  box: { flex: 1 },
+};
+
+export default App;
